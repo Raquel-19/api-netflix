@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table (name = "ACTORS")
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
