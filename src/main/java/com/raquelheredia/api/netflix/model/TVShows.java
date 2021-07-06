@@ -3,7 +3,6 @@ package com.raquelheredia.api.netflix.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale.Category;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,25 +52,30 @@ public class TVShows implements Serializable {
 	@OrderBy ("name")
 	@JoinTable (
 			name = "CATEGORIES_SHOWS",
-			joinColumns = @JoinColumn (name = "TV_SHOWS_ID", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn (name = "CATEGORIES_ID", referencedColumnName = "id"))
+			joinColumns = @JoinColumn (name = "TV_SHOWS_ID", referencedColumnName = "ID"),
+			inverseJoinColumns = @JoinColumn (name = "CATEGORIES_ID", referencedColumnName = "ID"))
 	
-	private List <Category> category;
+	private List <Categories> category;
 	
 	//Relación N:N Actors y TV Shows
 	@ManyToMany (fetch = FetchType.LAZY)
 	@OrderBy ("name")
 	@JoinTable (
 			name = "ACTORS_SHOWS",
-			joinColumns = @JoinColumn (name = "TV_SHOWS_ID", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn (name = "ACTORS_ID", referencedColumnName = "id"))
+			joinColumns = @JoinColumn (name = "TV_SHOWS_ID", referencedColumnName = "ID"),
+			inverseJoinColumns = @JoinColumn (name = "ACTORS_ID", referencedColumnName = "ID"))
 	
 	private List <Actors> actors;
 	
 	//Relación 1:N TV Shows y Awards
-	@OneToMany (mappedBy= "tv_shows")
+	@OneToMany (mappedBy= "tvShows", fetch = FetchType.LAZY)
 	@OrderBy ("name")
 	private List <Awards> awards = new ArrayList<>();
+	
+	//Relación 1:N TV Shows y Season
+		@OneToMany (mappedBy= "tvShows", fetch = FetchType.LAZY)
+		@OrderBy ("name")
+		private List <Season> seasons = new ArrayList<>();
 	
 	
 	

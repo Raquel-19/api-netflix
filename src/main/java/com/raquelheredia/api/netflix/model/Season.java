@@ -7,9 +7,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -37,9 +40,13 @@ public class Season implements Serializable {
 	 	private String name;
 	 	
 		//Relación 1:N Season y Chapters
-		@OneToMany (mappedBy= "seasons" , cascade = CascadeType.REMOVE)
+		@OneToMany (mappedBy= "seasons" , fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 		@OrderBy ("name")
 		private List <Chapters> chapters = new ArrayList<>();
+		
+		@ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+		@JoinColumn (name = "TV_SHOWS_ID")
+		private TVShows tvShows;
 	
 
 }
