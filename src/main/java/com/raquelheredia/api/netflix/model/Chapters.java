@@ -39,6 +39,6 @@ public class Chapters implements Serializable{
 	
 	@ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn (name = "SEASON_ID")
-	private Season seasons;
+	private Seasons seasons;
 
 }

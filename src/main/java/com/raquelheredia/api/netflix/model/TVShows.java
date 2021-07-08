@@ -36,7 +36,7 @@ public class TVShows implements Serializable {
 	private Long id;
 	@Column (name = "NAME")
 	private String name;
-	@Column (name = "SHORT_DECRIPTION")
+	@Column (name = "SHORT_DESCRIPTION")
 	private String short_description;
 	@Column (name = "LONG_DESCRIPTION")
 	private String long_description;
@@ -75,7 +75,7 @@ public class TVShows implements Serializable {
 	//Relación 1:N TV Shows y Season
 		@OneToMany (mappedBy= "tvShows", fetch = FetchType.LAZY)
 		@OrderBy ("name")
-		private List <Season> seasons = new ArrayList<>();
+		private List <Seasons> seasons = new ArrayList<>();
 	
 	
 	
