@@ -7,8 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.raquelheredia.api.netflix.dto.ChaptersRest;
-import com.raquelheredia.api.netflix.dto.SeasonRest;
 import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
+import com.raquelheredia.api.netflix.exceptions.NotFoundException;
+import com.raquelheredia.api.netflix.model.Chapters;
 import com.raquelheredia.api.netflix.repository.ChaptersRepository;
 import com.raquelheredia.api.netflix.services.ChaptersService;
 
@@ -29,15 +30,25 @@ public class ChaptersServiceImpl implements ChaptersService{
 	}
 
 	@Override
-	public List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long season_id, Long show_id){
-		return repositoryChapters.findBySeasonsIdAndSeasonsTvShowsId(season_id, show_id).stream()
+	public List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long seasonsId, Long showsId)  throws NetflixExceptions{
+		List<Chapters> chap = repositoryChapters.findBySeasonsIdAndSeasonsTvShowsId(seasonsId, showsId);
+		
+		if(chap.size() == 0)
+			throw new NotFoundException("CAPITULOS Y/O TEMPORADAS NO ENCONTRADAS.");
+		
+		return chap.stream()
 				.map(chapter -> modelMapper.map(chapter, ChaptersRest.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public ChaptersRest findSeasonOfSeasonAndShowNumber(Long seasonsId, Long id) {
-		 return modelMapper.map(repositoryChapters.findByIdAndSeasonsId (seasonsId, id), ChaptersRest.class);
+	public ChaptersRest findSeasonOfSeasonAndShowNumber(Long id, Long seasonsId, Long showsId) throws NetflixExceptions {
+		Chapters ch = repositoryChapters.findByIdAndSeasonsIdAndSeasonsTvShowsId (id, seasonsId, showsId);
+		
+		if (ch == null) 
+			throw new NotFoundException("CAPITULO, TEMPORADA Y/O SERIE NO ENCONTRADAS.");
+		
+		return modelMapper.map(ch, ChaptersRest.class);
 	}
 
 }

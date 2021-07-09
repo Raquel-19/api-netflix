@@ -1,14 +1,15 @@
 package com.raquelheredia.api.netflix.services.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.raquelheredia.api.netflix.dto.ActorsRest;
 import com.raquelheredia.api.netflix.dto.TVShowsRest;
+import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
+import com.raquelheredia.api.netflix.exceptions.NotFoundException;
+import com.raquelheredia.api.netflix.model.TVShows;
 import com.raquelheredia.api.netflix.repository.TVShowsRepository;
 import com.raquelheredia.api.netflix.services.TVShowsService;
 
@@ -24,9 +25,14 @@ public class TVShowsServiceImpl implements TVShowsService {
 
 
 	@Override
-	public TVShowsRest findById(Long id) throws Exception {
-		return repositoryShows.findById(id).map(shows -> modelMapper.map(shows, TVShowsRest.class))
-				.orElseThrow(() -> new Exception("NO EXISTE EL ID"));
+	public TVShowsRest findById(Long id) throws NetflixExceptions {
+		
+	TVShows sh = repositoryShows.findById(id).get();
+		
+		if (sh == null) 
+			throw new NotFoundException("SERIE NO ENCONTRADA. POR FAVOR, ESCRIBA OTRO ID.");
+		
+		return modelMapper.map(sh, TVShowsRest.class);		
 	}
 
 	@Override
@@ -42,8 +48,14 @@ public class TVShowsServiceImpl implements TVShowsService {
 	}
 
 	@Override
-	public List<TVShowsRest> findByCategoryId (Long categoryId) {
-		return repositoryShows.findByCategoryId(categoryId).stream()
+	public List<TVShowsRest> findByCategoryId (Long categoryId) throws NetflixExceptions{
+		
+		List<TVShows> sh = repositoryShows.findByCategoryId(categoryId);
+		
+		if(sh.size() == 0)
+			throw new NotFoundException("SERIES NO ENCONTRADAS CON LA CATEGORIA SELECCIONADA.");
+		
+		return sh.stream()
 				.map(show -> modelMapper.map(show, TVShowsRest.class))
 				.collect(Collectors.toList());
 	}

@@ -11,7 +11,7 @@ import com.raquelheredia.api.netflix.model.Chapters;
 @Repository
 public interface ChaptersRepository extends JpaRepository <Chapters, Long>{
 	
-	List <Chapters> findBySeasonsIdAndSeasonsTvShowsId(Long season_id, Long show_id);
+	List <Chapters> findBySeasonsIdAndSeasonsTvShowsId(Long seasonsId, Long showsId) throws NetflixExceptions;
 	
-	Chapters findByIdAndSeasonsId (Long seasonsId, Long id);
+	Chapters findByIdAndSeasonsIdAndSeasonsTvShowsId (Long id, Long seasonsId, Long showsId);
 }

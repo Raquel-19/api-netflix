@@ -33,9 +33,9 @@ private final ChaptersService chaptersService;
 	 * RETRIEVE: Consulta el listado de capitulos de una temporada y una serie en concreto.
 	 *
 	 */
-	@GetMapping("shows/{show_id}/seasons/{season_id}/chapters")
-	List <ChaptersRest> findChaptersOfSpecificSeasonAndShow (@PathVariable Long season_id, @PathVariable Long show_id) throws NetflixExceptions {
-		return chaptersService.findChaptersOfSpecificSeasonAndShow(season_id, show_id);
+	@GetMapping("shows/{showsId}/seasons/{seasonsId}/chapters")
+	List <ChaptersRest> findChaptersOfSpecificSeasonAndShow (@PathVariable Long seasonsId, @PathVariable Long showsId) throws NetflixExceptions {
+		return chaptersService.findChaptersOfSpecificSeasonAndShow(seasonsId, showsId);
 	}
 	
 	/**
@@ -58,8 +58,8 @@ private final ChaptersService chaptersService;
 	 * 
 	 */
 	@GetMapping("/shows/{shows-id}/seasons/{season_number}/chapters/{chapters_number}") 
-	ChaptersRest findSeasonOfSeasonAndShowNumber (@RequestParam Long ShowsId, Long SeasonsId, Long id) {
-		return chaptersService.findSeasonOfSeasonAndShowNumber (ShowsId, SeasonsId);
+	ChaptersRest findSeasonOfSeasonAndShowNumber (@RequestParam Long id, Long seasonsId, Long showsId) throws NetflixExceptions {
+		return chaptersService.findSeasonOfSeasonAndShowNumber (id, seasonsId, showsId);
 	}
 }
 

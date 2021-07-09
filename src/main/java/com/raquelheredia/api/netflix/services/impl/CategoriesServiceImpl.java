@@ -1,16 +1,15 @@
 package com.raquelheredia.api.netflix.services.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.raquelheredia.api.netflix.dto.ActorsRest;
 import com.raquelheredia.api.netflix.dto.CategoriesRest;
 import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
-import com.raquelheredia.api.netflix.repository.ActorsRepository;
+import com.raquelheredia.api.netflix.exceptions.NotFoundException;
+import com.raquelheredia.api.netflix.model.Categories;
 import com.raquelheredia.api.netflix.repository.CategoriesRepository;
 import com.raquelheredia.api.netflix.services.CategoriesService;
 
@@ -26,16 +25,26 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 	@Override
 	public List<CategoriesRest> findAllCategories() throws NetflixExceptions  {
-		return repositoryCategories.findAll().stream()
-				.map(category -> modelMapper.map(category, CategoriesRest.class))
-				.collect(Collectors.toList());
 		
+		List<Categories> ca = repositoryCategories.findAll() ;
+		
+		if(ca.size() == 0)
+			throw new NotFoundException("CATEGORIAS NO ENCONTRADAS."); 
+	
+		
+		return ca.stream()
+				.map(category -> modelMapper.map(category, CategoriesRest.class)).collect(Collectors.toList());
 	}
-
+	
 	@Override
-	public CategoriesRest findById(Long id) throws Exception {
-		return repositoryCategories.findById(id).map(category -> modelMapper.map(category, CategoriesRest.class))
-				.orElseThrow(() -> new Exception("NO EXISTE EL ID"));
+	public CategoriesRest findById(Long id) throws NetflixExceptions {
+		
+		Categories ca = repositoryCategories.findById(id).get();
+		
+		if (ca == null) 
+			throw new NotFoundException("CATEGORIA NO ENCONTRADA. POR FAVOR, ESCRIBA OTRO ID.");
+		
+		return modelMapper.map(ca, CategoriesRest.class);
 	}
 
 }

@@ -33,8 +33,8 @@ public class TVShowsRest implements Serializable{
 	private String advertising;
 	private Integer year;
 	
-	private List <Categories> category;
-	private List <Seasons> seasons;
+	private List <CategoriesRest> category;
+	private List <SeasonRest> seasons;
 	private List <ActorsRest> actors;
 	private List <AwardsRest> awards;
 	

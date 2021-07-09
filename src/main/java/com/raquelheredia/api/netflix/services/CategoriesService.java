@@ -9,6 +9,6 @@ import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 public interface CategoriesService {
 	
 	List <CategoriesRest> findAllCategories () throws NetflixExceptions;
-	CategoriesRest findById (Long id) throws Exception;
+	CategoriesRest findById (Long id) throws NetflixExceptions;
 
 }

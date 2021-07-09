@@ -40,7 +40,7 @@ public class CategoriesController  {
 	 * @return
 	 */
 	@GetMapping ("/{id}")
-	public ResponseEntity<CategoriesRest>findById(@PathVariable Long id) throws Exception {
+	public ResponseEntity<CategoriesRest>findById(@PathVariable Long id) throws NetflixExceptions {
 		return ResponseEntity.ok().body(categoriesService.findById(id));
 	}
 	

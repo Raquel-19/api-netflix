@@ -10,7 +10,7 @@ import com.raquelheredia.api.netflix.model.TVShows;
 @Repository
 public interface TVShowsRepository extends JpaRepository <TVShows, Long>{
 	
-	List <TVShows> findByCategoryId (Long category_id);
+	List <TVShows> findByCategoryId (Long categoryId);
 
 
 }

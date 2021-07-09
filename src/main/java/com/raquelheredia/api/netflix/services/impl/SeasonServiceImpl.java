@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.raquelheredia.api.netflix.dto.ActorsRest;
 import com.raquelheredia.api.netflix.dto.SeasonRest;
+import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
+import com.raquelheredia.api.netflix.exceptions.NotFoundException;
+import com.raquelheredia.api.netflix.model.Seasons;
 import com.raquelheredia.api.netflix.repository.SeasonRepository;
 import com.raquelheredia.api.netflix.services.SeasonService;
 
@@ -22,16 +24,23 @@ public class SeasonServiceImpl implements SeasonService{
 	private final ModelMapper modelMapper;
 
 	@Override
-	public List<SeasonRest> findSeasonByShow (Long shows_id)  {
-		return repositorySeasons.findByTvShowsId(shows_id).stream()
+	public List<SeasonRest> findSeasonByShow (Long showsId) throws NetflixExceptions  {
+		
+		List <Seasons> se = repositorySeasons.findByTvShowsId(showsId);
+		
+		if(se.size() == 0)
+			throw new NotFoundException("TEMPORADAS NO ENCONTRADAS."); 
+		
+		return se.stream()
 				.map(season -> modelMapper.map(season, SeasonRest.class))
 				.collect(Collectors.toList());
-	}
-	
+}
 	@Override
-	public SeasonRest findSeasonOfASpecificShow (Long shows_id, Long seasons_id) {
-		//return repositorySeasons.findSeasonOfASpecificShow(shows_id, seasons_id).map(season -> modelMapper.map(season, SeasonRest.class))
-				//.orElseThrow(() -> new Exception("NO EXISTEN LOS IDs"));
-		 return modelMapper.map(repositorySeasons.findByIdAndTvShowsId (shows_id, seasons_id), SeasonRest.class);
+	public SeasonRest findSeasonOfASpecificShow (Long seasonsId, Long showsId) throws NetflixExceptions {
+		Seasons se = repositorySeasons. findByIdAndTvShowsId  (seasonsId, showsId);
+		
+		if (se == null) 
+			throw new NotFoundException("TEMPORADA Y/O SERIE NO ENCONTRADA.");
+		 return modelMapper.map(se, SeasonRest.class);
 	}
 }

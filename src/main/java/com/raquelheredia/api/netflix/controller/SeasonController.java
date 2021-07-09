@@ -26,7 +26,7 @@ private final SeasonService seasonService;
 	/** 
 	 * RETRIEVE: Consulta el listado de temporadas de una serie por ID.
 	 */
-	@GetMapping ("/shows/{shows_id}")
+	@GetMapping ("/{showsId}/shows")
 	List<SeasonRest> findSeasonByShow (@PathVariable Long showsId) throws NetflixExceptions {
 		return seasonService.findSeasonByShow(showsId);
 	}
@@ -35,9 +35,9 @@ private final SeasonService seasonService;
 	 * RETRIEVE: Consulta una temporada en concreto de una serie en concreto .
 	 * 
 	 */
-	@GetMapping ("/shows/{shows-id}/seasons/{seasons-id}")
-	SeasonRest findSeasonOfASpecificShow (@RequestParam Long showsId, Long seasonsId) {
-		return seasonService.findSeasonOfASpecificShow (showsId, seasonsId);
+	@GetMapping ("/shows/{showsId}/seasons/{seasonsId}")
+	SeasonRest findSeasonOfASpecificShow (@PathVariable Long seasonsId, @PathVariable Long showsId) throws NetflixExceptions {
+		return seasonService.findSeasonOfASpecificShow (seasonsId, showsId);
 	}
 	
 	

@@ -32,10 +32,9 @@ private final TVShowsService showsService;
 	/**
 	 * RETRIEVE: Consultar el listado de series pasando el ID de Categories.
 	 * 
-	 * REVISAR!
 	 */
-	 @GetMapping ("/{category_id}/categories")
-	List <TVShowsRest> findShowsByCategoryId (@PathVariable(value = "category_id") Long categoryId) throws NetflixExceptions {
+	 @GetMapping ("/{categoryId}/categories")
+	List <TVShowsRest> findShowsByCategoryId (@PathVariable(value = "categoryId") Long categoryId) throws NetflixExceptions {
 			return showsService.findByCategoryId(categoryId);
 	} 
 	 
@@ -46,7 +45,7 @@ private final TVShowsService showsService;
 	 */
 	
 	@GetMapping ("/{id}")
-	public ResponseEntity<TVShowsRest> findById(@PathVariable Long id) throws Exception{
+	public ResponseEntity<TVShowsRest> findById(@PathVariable Long id) throws NetflixExceptions{
 		return ResponseEntity.ok().body(showsService.findById(id));
 	}
 	
@@ -68,9 +67,9 @@ private final TVShowsService showsService;
 	 * 
 	 * REVISAR!
 	 */
-	@GetMapping("/shows/seasons/actors/{actors_id}")
-	List <TVShowsRest> findShowsAndChaptersOfSpecificActor (@RequestParam Long actor_id) {
-		return showsService.findShowsAndChaptersOfSpecificActor(actor_id);
+	@GetMapping("/shows/seasons/actors/{actorsId}")
+	List <TVShowsRest> findShowsAndChaptersOfSpecificActor (@PathVariable Long actorId) {
+		return showsService.findShowsAndChaptersOfSpecificActor(actorId);
 	}
 	
 	/**
