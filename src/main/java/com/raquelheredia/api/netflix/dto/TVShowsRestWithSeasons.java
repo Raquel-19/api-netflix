@@ -1,15 +1,10 @@
 package com.raquelheredia.api.netflix.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.raquelheredia.api.netflix.model.Actors;
-import com.raquelheredia.api.netflix.model.Categories;
-import com.raquelheredia.api.netflix.model.Seasons;
-import com.raquelheredia.api.netflix.model.TVShows;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -20,9 +15,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TVShowsRest implements Serializable{
-
-	private static final long serialVersionUID = -761341044859198720L;
+public class TVShowsRestWithSeasons implements Serializable {
+	
+private static final long serialVersionUID = -761341044859198720L;
 	
 	@JsonProperty (value = "ID")
 	@ApiModelProperty(notes = "This is the primary key of the class TVShows", required = true)
@@ -35,12 +30,6 @@ public class TVShowsRest implements Serializable{
 	private String advertising;
 	private Integer year;
 	
-	private List <CategoriesRest> category;
 	private List <SeasonRest> seasons;
-	private List <ActorsRest> actors;
-	private List <AwardsRest> awards;
-	
-	
-	
 
 }

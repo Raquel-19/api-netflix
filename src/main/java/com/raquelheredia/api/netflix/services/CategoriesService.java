@@ -10,5 +10,4 @@ public interface CategoriesService {
 	
 	List <CategoriesRest> findAllCategories () throws NetflixExceptions;
 	CategoriesRest findById (Long id) throws NetflixExceptions;
-
 }

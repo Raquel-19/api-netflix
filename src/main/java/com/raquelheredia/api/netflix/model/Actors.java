@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class Actors implements Serializable {
 	
 	@Column (name = "NAME")
 	private String name;
+	
 	@Column (name = "LAST_NAME")
 	private String last_name;
 	

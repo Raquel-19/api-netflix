@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,7 @@ public class Seasons implements Serializable {
 	 	
 	 	@Column (name = "NUMBER")
 	 	private Integer number;
+	 	
 	 	@Column (name = "NAME")
 	 	private String name;
 	 	

@@ -7,9 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.raquelheredia.api.netflix.dto.ChaptersRest;
+import com.raquelheredia.api.netflix.dto.TVShowsRest;
 import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 import com.raquelheredia.api.netflix.exceptions.NotFoundException;
 import com.raquelheredia.api.netflix.model.Chapters;
+import com.raquelheredia.api.netflix.model.TVShows;
 import com.raquelheredia.api.netflix.repository.ChaptersRepository;
 import com.raquelheredia.api.netflix.services.ChaptersService;
 
@@ -23,11 +25,6 @@ public class ChaptersServiceImpl implements ChaptersService{
 	
 	private final ModelMapper modelMapper;
 	
-
-	@Override
-	public ChaptersRest updateChapter(ChaptersRest chapter) {
-		return null;
-	}
 
 	@Override
 	public List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long seasonsId, Long showsId)  throws NetflixExceptions{
@@ -51,4 +48,11 @@ public class ChaptersServiceImpl implements ChaptersService{
 		return modelMapper.map(ch, ChaptersRest.class);
 	}
 
+	@Override
+	public ChaptersRest updateChapter(Long nameId, String newName) throws NetflixExceptions {
+		Chapters ch = repositoryChapters.findById(nameId).orElseThrow(() -> new NotFoundException("EL NOMBRE NO SE PUDO ACTUALIZAR"));;
+		
+		ch.setName(newName);
+		return modelMapper.map(repositoryChapters.save(ch), ChaptersRest.class);
+	}
 }

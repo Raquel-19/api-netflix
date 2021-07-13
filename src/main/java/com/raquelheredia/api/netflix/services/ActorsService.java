@@ -4,16 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import com.raquelheredia.api.netflix.dto.ActorsRest;
+import com.raquelheredia.api.netflix.dto.ActorsRestWithTVShows;
 import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 import com.raquelheredia.api.netflix.model.Actors;
 
 public interface ActorsService {
 
-	ActorsRest updateActor(ActorsRest actor);
-	ActorsRest createActor(ActorsRest actor);
-	ActorsRest findById(Long id) throws Exception;
+	ActorsRest updateActor(Long actorId, String newName,String newLastName) throws NetflixExceptions;
+	ActorsRest createActor(Actors actor) throws NetflixExceptions;
+	ActorsRest findById(Long id) throws NetflixExceptions;
 	List<ActorsRest> findAllActors() throws NetflixExceptions;
-	void deleteById(Long id);
+	void deleteActor(Long actorId) throws NetflixExceptions;
+	ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(Long actorsId)throws NetflixExceptions;
 	
 
 }

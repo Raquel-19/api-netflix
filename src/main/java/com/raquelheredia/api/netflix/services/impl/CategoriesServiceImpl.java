@@ -10,7 +10,9 @@ import com.raquelheredia.api.netflix.dto.CategoriesRest;
 import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 import com.raquelheredia.api.netflix.exceptions.NotFoundException;
 import com.raquelheredia.api.netflix.model.Categories;
+import com.raquelheredia.api.netflix.model.TVShows;
 import com.raquelheredia.api.netflix.repository.CategoriesRepository;
+import com.raquelheredia.api.netflix.repository.TVShowsRepository;
 import com.raquelheredia.api.netflix.services.CategoriesService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,12 +41,8 @@ public class CategoriesServiceImpl implements CategoriesService {
 	@Override
 	public CategoriesRest findById(Long id) throws NetflixExceptions {
 		
-		Categories ca = repositoryCategories.findById(id).get();
-		
-		if (ca == null) 
-			throw new NotFoundException("CATEGORIA NO ENCONTRADA. POR FAVOR, ESCRIBA OTRO ID.");
+		Categories ca = repositoryCategories.findById(id).orElseThrow(() -> new NotFoundException("CATEGORIA NO ENCONTRADA. POR FAVOR, ESCRIBA OTRO ID"));
 		
 		return modelMapper.map(ca, CategoriesRest.class);
 	}
-
 }
