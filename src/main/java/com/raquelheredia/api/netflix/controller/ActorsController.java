@@ -3,6 +3,7 @@ package com.raquelheredia.api.netflix.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public class ActorsController {
 		this.actorsService = actorsService;
 	}
 
-	@GetMapping(UrlConstants.URL_FINDALL)
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Consulta el listado de actores", response = ActorsController.class)
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
 			@ApiResponse(code = 200, message = "Successfully!"),

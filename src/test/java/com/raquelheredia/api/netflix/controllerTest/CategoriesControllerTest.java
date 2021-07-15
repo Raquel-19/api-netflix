@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.raquelheredia.api.netflix.dto.CategoriesRest;
 import com.raquelheredia.api.netflix.exceptions.InternalServerErrorException;
 import com.raquelheredia.api.netflix.services.CategoriesService;
+import com.raquelheredia.api.netflix.util.UrlConstants;
 
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
@@ -83,5 +84,26 @@ public class CategoriesControllerTest {
 				.andReturn();
 
 	}
+	
+	@Test
+	public void retrieveCategoriesId() throws Exception {
 
+		CategoriesRest categoryId = new CategoriesRest(1L, "CIENCIA FICCIÓN");
+
+		when(categoriesService.findById(1L)).thenReturn(categoryId);
+
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/netflix/v1/categories" + "/1");
+
+		mockMvc.perform(request).andExpect(status().isOk())
+				.andExpect(content().json("{\r\n"
+						+ "  \"status\": \"Success\",\r\n"
+						+ "  \"code\": \"200 OK\",\r\n"
+						+ "  \"message\": \"OK\",\r\n"
+						+ "  \"data\": {\r\n"
+						+ "    \"name\": \"CIENCIA FICCIÓN\",\r\n"
+						+ "    \"ID\": 1\r\n"
+						+ "  }\r\n"
+						+ "}"))
+				.andReturn();
+	}
 }

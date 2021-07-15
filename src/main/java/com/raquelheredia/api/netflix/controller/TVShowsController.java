@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/api/netflix/v1/shows")
+@RequestMapping(UrlConstants.URL_BASE + UrlConstants.URL_SHOW)
 @Api(value = "showsApi", description = "Operations pertaining to Shows in ShowsApi")
 public class TVShowsController {
 

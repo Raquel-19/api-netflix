@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/api/netflix/v1/chapters")
+@RequestMapping(UrlConstants.URL_BASE + UrlConstants.URL_CHAPTER)
 @Api(value = "chaptersApi", description = "Operations pertaining to Chapters in ChaptersApi")
 public class ChaptersController {
 
@@ -49,7 +49,9 @@ public class ChaptersController {
 		// return chaptersService.findChaptersOfSpecificSeasonAndShow(seasonsId,
 		// showsId);
 	}
-	@PutMapping (UrlConstants.URL_CHAPTER_ID + UrlConstants.URL_CHAPTER + UrlConstants.URL_NAME)
+	//TODO: MODIFICAR PATCHMAPPING -> Cuando se actualiza un campo en el actualizar (Ver PensandoApimente)
+	
+	@PutMapping (UrlConstants.URL_CHAPTER_ID + UrlConstants.URL_CHAPTER + UrlConstants.URL_NAME) 
 	//@PutMapping("/{chaptersId}/chapters/{newName}")
 	@ApiOperation(value = "Actualiza el nombre de un captitulo", response = TVShowsController.class)
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),

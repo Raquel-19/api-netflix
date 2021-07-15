@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/api/netflix/v1/seasons")
+@RequestMapping(UrlConstants.URL_BASE + UrlConstants.URL_SEASON)
 @Api(value = "seasonApi", description = "Operations pertaining to Seasons in SeasonApi")
 public class SeasonController {
 

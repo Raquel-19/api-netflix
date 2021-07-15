@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/api/netflix/v1/categories") 
+@RequestMapping(UrlConstants.URL_BASE + UrlConstants.URL_CATEGORY) 
 @Api(value = "categoriesApi", description = "Operations pertaining to Categories in CategoriesApi")
 public class CategoriesController {
 

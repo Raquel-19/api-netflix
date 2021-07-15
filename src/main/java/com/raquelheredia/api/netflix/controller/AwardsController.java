@@ -3,6 +3,7 @@ package com.raquelheredia.api.netflix.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/api/netflix/v1/awards")
+@RequestMapping(UrlConstants.URL_BASE + UrlConstants.URL_AWARD)
 @Api(value = "awardsApi", description = "Operations pertaining to Awards in AwardsApi")
 public class AwardsController {
 
@@ -30,7 +31,7 @@ public class AwardsController {
 		this.awardsService = awardsService;
 	}
 
-	@GetMapping(UrlConstants.URL_FINDALL)
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE) //@GetMapping ("/")
 	@ApiOperation(value = "Consulta el listado de premios", response = AwardsController.class)
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
 			@ApiResponse(code = 200, message = "Successfully!"),

@@ -3,7 +3,6 @@ package com.raquelheredia.api.netflix.util;
 public class UrlConstants {
 	
 	public static final String URL_BASE = "/api/netflix/v1";
-	public static final String URL_FINDALL = "/";
 	
 	public static final String URL_ACTOR = "/actors";
 	public static final String URL_AWARD = "/awards";
