@@ -9,9 +9,9 @@ import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 import com.raquelheredia.api.netflix.model.Chapters;
 
 @Repository
-public interface ChaptersRepository extends JpaRepository <Chapters, Long>{
-	
-	List <Chapters> findBySeasonsIdAndSeasonsTvShowsId(Long seasonsId, Long showsId) throws NetflixExceptions;
-	
-	Chapters findByIdAndSeasonsIdAndSeasonsTvShowsId (Long id, Long seasonsId, Long showsId);
+public interface ChaptersRepository extends JpaRepository<Chapters, Long> {
+
+	List<Chapters> findBySeasonsIdAndSeasonsTvShowsId(Long seasonsId, Long showsId) throws NetflixExceptions;
+
+	Chapters findByIdAndSeasonsIdAndSeasonsTvShowsId(Long chaptersId, Long seasonsId, Long showsId);
 }

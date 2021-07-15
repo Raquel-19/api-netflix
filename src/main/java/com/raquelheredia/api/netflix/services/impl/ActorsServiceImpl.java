@@ -19,76 +19,84 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ActorsServiceImpl implements ActorsService{
-	
-	private final ActorsRepository repositoryActors;
-	
-	private final ModelMapper modelMapper;
+public class ActorsServiceImpl implements ActorsService {
 
+	private final ActorsRepository repositoryActors;
+
+	private final ModelMapper modelMapper;
 
 	@Override
 	public ActorsRest updateActor(Long actorId, String newName, String newLastName) throws NetflixExceptions {
-		Actors ac = repositoryActors.findById(actorId).orElseThrow(() -> new NotFoundException("EL ACTOR NO SE PUDO ACTUALIZAR"));;
-		
-		/*if (ac == null) {
-			throw new NotFoundException("EL ACTOR NO SE PUDO ACTUALIZAR");
-			
-		} */
-		
+		Actors ac = repositoryActors.findById(actorId)
+				.orElseThrow(() -> new NotFoundException("EL ACTOR NO SE PUDO ACTUALIZAR"));
+		;
+
+		/*
+		 * if (ac == null) { throw new
+		 * NotFoundException("EL ACTOR NO SE PUDO ACTUALIZAR");
+		 * 
+		 * }
+		 */
+
 		ac.setName(newName);
 		ac.setLast_name(newLastName);
 		return modelMapper.map(repositoryActors.save(ac), ActorsRest.class);
 	}
 
 	@Override
-	public ActorsRest createActor(Actors actor) throws NetflixExceptions{
-		Optional <Actors> ac = repositoryActors.findById(actor.getId());
-		
-		if (ac.isPresent()) { //Si el id existe...
+	public ActorsRest createActor(Actors actor) throws NetflixExceptions {
+		Optional<Actors> ac = repositoryActors.findById(actor.getId());
+
+		if (ac.isPresent()) { // Si el id existe...
 			throw new NotFoundException("EL ACTOR NO SE PUDO CREAR");
-			
-		} 
+
+		}
 		return modelMapper.map(repositoryActors.save(actor), ActorsRest.class);
 	}
 
 	@Override
-	public ActorsRest findById(Long id) throws NetflixExceptions {
-		
-		Actors ac = repositoryActors.findById(id).orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID."));
+	public ActorsRest findById(Long actorId) throws NetflixExceptions {
+
+		Actors ac = repositoryActors.findById(actorId)
+				.orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID."));
 //		
 //		if (ac == null) 
 //			throw new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID.");
-		
+
 		return modelMapper.map(ac, ActorsRest.class);
 	}
-		/* return repositoryActors.findById(id).map(actor -> modelMapper.map(actor, ActorsRest.class))
-				.orElseThrow(() -> new Exception("NO EXISTE EL ID")); */
-		//return modelMapper.map(repositoryActors.findById(id).get(), ActorsRest.class);
+	/*
+	 * return repositoryActors.findById(id).map(actor -> modelMapper.map(actor,
+	 * ActorsRest.class)) .orElseThrow(() -> new Exception("NO EXISTE EL ID"));
+	 */
+	// return modelMapper.map(repositoryActors.findById(id).get(),
+	// ActorsRest.class);
 
 	@Override
 	public List<ActorsRest> findAllActors() throws NetflixExceptions {
-		
+
 		List<Actors> ac = repositoryActors.findAll();
 
 		if (ac.size() == 0)
-			throw new NotFoundException("ACTORES NO ENCONTRADOS.");
+			throw new NotFoundException("ACTORES NO ENCONTRADOS");
 
 		return ac.stream().map(actor -> modelMapper.map(actor, ActorsRest.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public void deleteActor(Long actorId) throws NetflixExceptions {
-	Actors ac = repositoryActors.findById(actorId).orElseThrow(() -> new NotFoundException("EL ACTOR NO SE PUDO ELIMINAR POR QUE NO EXISTE"));
-	
+		Actors ac = repositoryActors.findById(actorId)
+				.orElseThrow(() -> new NotFoundException("EL ACTOR NO SE PUDO ELIMINAR POR QUE NO EXISTE"));
+
 		repositoryActors.deleteById(actorId);
 	}
 
 	@Override
 	public ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(Long actorsId) throws NetflixExceptions {
-		Actors ac = repositoryActors.findById(actorsId).orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID."));	
-		
+		Actors ac = repositoryActors.findById(actorsId)
+				.orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID."));
+
 		return modelMapper.map(ac, ActorsRestWithTVShows.class);
 	}
-		
-	}
 
+}

@@ -15,31 +15,30 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table (name = "ACTORS")
+@Table(name = "ACTORS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Actors implements Serializable {
-	
+
 	private static final long serialVersionUID = 3981988226386688880L;
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name = "NAME")
+
+	@Column(name = "NAME")
 	private String name;
-	
-	@Column (name = "LAST_NAME")
+
+	@Column(name = "LAST_NAME")
 	private String last_name;
-	
-	@ManyToMany (mappedBy= "actors" , fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy ("name")
-	private List <TVShows> shows = new ArrayList <>();
+
+	@ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OrderBy("name")
+	private List<TVShows> shows = new ArrayList<>();
 }

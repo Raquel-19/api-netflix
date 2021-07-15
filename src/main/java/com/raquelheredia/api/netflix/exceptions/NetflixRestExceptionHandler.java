@@ -15,12 +15,13 @@ import com.raquelheredia.api.netflix.util.ExceptionConstants;
 @ControllerAdvice
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class NetflixRestExceptionHandler {
-	
+
 	@ExceptionHandler({ Exception.class })
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public NetflixResponse unhandledErrors(HttpServletRequest req, Exception ex) {
-		return new NetflixResponse(ExceptionConstants.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), ex.getMessage());
+		return new NetflixResponse(ExceptionConstants.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+				ex.getMessage());
 	}
 
 	@ExceptionHandler({ NetflixExceptions.class })

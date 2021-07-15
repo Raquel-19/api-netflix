@@ -3,9 +3,8 @@ package com.raquelheredia.api.netflix.exceptions;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class NetflixExceptions extends Exception {
-	
+
 	private static final long serialVersionUID = 6419931754960024017L;
 
 	private final int code;

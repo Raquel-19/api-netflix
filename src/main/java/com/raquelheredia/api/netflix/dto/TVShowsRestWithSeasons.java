@@ -11,25 +11,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude (JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class TVShowsRestWithSeasons implements Serializable {
-	
-private static final long serialVersionUID = -761341044859198720L;
-	
-	@JsonProperty (value = "ID")
+
+	private static final long serialVersionUID = -761341044859198720L;
+
+	@JsonProperty(value = "ID")
 	@ApiModelProperty(notes = "This is the primary key of the class TVShows", required = true)
 	private Long id;
-	
+
 	private String name;
 	private String short_description;
 	private String long_description;
 	private Integer recommended_age;
 	private String advertising;
 	private Integer year;
-	
-	private List <SeasonRest> seasons;
+
+	private List<SeasonRest> seasons;
 
 }

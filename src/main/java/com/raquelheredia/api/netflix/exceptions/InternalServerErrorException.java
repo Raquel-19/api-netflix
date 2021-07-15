@@ -4,9 +4,8 @@ import java.util.Arrays;
 
 import org.springframework.http.HttpStatus;
 
-
 public class InternalServerErrorException extends NetflixExceptions {
-	
+
 	private static final long serialVersionUID = -6870732210014274010L;
 
 	public InternalServerErrorException(final String message) {

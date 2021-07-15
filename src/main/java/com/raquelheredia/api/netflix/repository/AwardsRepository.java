@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.raquelheredia.api.netflix.model.Awards;
 
 @Repository
-public interface AwardsRepository extends JpaRepository <Awards, Long> {
+public interface AwardsRepository extends JpaRepository<Awards, Long> {
 
 }

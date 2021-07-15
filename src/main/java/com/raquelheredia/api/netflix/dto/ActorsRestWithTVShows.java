@@ -10,20 +10,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude (JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ActorsRestWithTVShows implements Serializable {
-	
-private static final long serialVersionUID = -3551800133915698770L;
-	
-	@JsonProperty (value = "ID")
+
+	private static final long serialVersionUID = -3551800133915698770L;
+
+	@JsonProperty(value = "ID")
 	private Long id;
-	
+
 	private String name;
 	private String last_name;
-	
-	private List <TVShowsRestWithSeasons> shows;
+
+	private List<TVShowsRestWithSeasons> shows;
 
 }

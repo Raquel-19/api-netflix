@@ -11,10 +11,9 @@ import com.raquelheredia.api.netflix.model.Chapters;
 import com.raquelheredia.api.netflix.model.Seasons;
 
 @Repository
-public interface SeasonRepository extends JpaRepository <Seasons, Long> {
+public interface SeasonRepository extends JpaRepository<Seasons, Long> {
 
-	List <Seasons> findByTvShowsId (Long showsId) throws NetflixExceptions;
-	
-	Seasons findByIdAndTvShowsId (Long id, Long showsId) throws NetflixExceptions;
+	List<Seasons> findByTvShowsId(Long showsId) throws NetflixExceptions;
+
+	Seasons findByIdAndTvShowsId(Long id, Long showsId) throws NetflixExceptions;
 }
-

@@ -13,35 +13,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table (name = "CHAPTERS")
+@Table(name = "CHAPTERS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Chapters implements Serializable{
-	 
+public class Chapters implements Serializable {
+
 	private static final long serialVersionUID = 3387099365203261958L;
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name = "NUMBER")
+
+	@Column(name = "NUMBER")
 	private Integer number;
-	
-	@Column (name = "NAME")
+
+	@Column(name = "NAME")
 	private String name;
-	
-	@Column (name = "DURATION")
+
+	@Column(name = "DURATION")
 	private Integer duration;
-	
-	@ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JoinColumn (name = "SEASON_ID")
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "SEASON_ID")
 	private Seasons seasons;
 
 }

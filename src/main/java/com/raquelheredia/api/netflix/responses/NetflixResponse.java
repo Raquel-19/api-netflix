@@ -3,9 +3,9 @@ package com.raquelheredia.api.netflix.responses;
 import java.io.Serializable;
 
 public class NetflixResponse<T> implements Serializable {
-	
+
 	private static final long serialVersionUID = -6957365226903078862L;
-	
+
 	private String status;
 	private String code;
 	private String message;

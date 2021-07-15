@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.raquelheredia.api.netflix.model.Categories;
 
 @Repository
-public interface CategoriesRepository extends JpaRepository <Categories, Long> {
-	
-	
+public interface CategoriesRepository extends JpaRepository<Categories, Long> {
 
 }

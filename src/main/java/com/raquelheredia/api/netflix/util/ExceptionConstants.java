@@ -1,7 +1,7 @@
 package com.raquelheredia.api.netflix.util;
 
 public class ExceptionConstants {
-	
+
 	public static final String ERROR = "ERROR";
 
 	public static final String MESSAGE_INEXISTENT_SEASON = "SEASON INEXISTENT - Season does not exist";

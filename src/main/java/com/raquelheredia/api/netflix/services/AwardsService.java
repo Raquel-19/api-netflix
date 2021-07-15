@@ -8,7 +8,5 @@ import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 public interface AwardsService {
 
 	List<AwardsRest> findAllAwards() throws NetflixExceptions;
-	
-	
 
 }

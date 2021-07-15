@@ -17,30 +17,29 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SeasonServiceImpl implements SeasonService{
-	
+public class SeasonServiceImpl implements SeasonService {
+
 	private final SeasonRepository repositorySeasons;
-	
+
 	private final ModelMapper modelMapper;
 
 	@Override
-	public List<SeasonRest> findSeasonByShow (Long showsId) throws NetflixExceptions  {
-		
-		List <Seasons> se = repositorySeasons.findByTvShowsId(showsId);
-		
-		if(se.size() == 0)
-			throw new NotFoundException("TEMPORADAS NO ENCONTRADAS."); 
-		
-		return se.stream()
-				.map(season -> modelMapper.map(season, SeasonRest.class))
-				.collect(Collectors.toList());
-}
+	public List<SeasonRest> findSeasonByShow(Long showsId) throws NetflixExceptions {
+
+		List<Seasons> se = repositorySeasons.findByTvShowsId(showsId);
+
+		if (se.size() == 0)
+			throw new NotFoundException("TEMPORADAS NO ENCONTRADAS.");
+
+		return se.stream().map(season -> modelMapper.map(season, SeasonRest.class)).collect(Collectors.toList());
+	}
+
 	@Override
-	public SeasonRest findSeasonOfASpecificShow (Long seasonsId, Long showsId) throws NetflixExceptions {
-		Seasons se = repositorySeasons. findByIdAndTvShowsId  (seasonsId, showsId);
-		
-		if (se == null) 
+	public SeasonRest findSeasonOfASpecificShow(Long seasonsId, Long showsId) throws NetflixExceptions {
+		Seasons se = repositorySeasons.findByIdAndTvShowsId(seasonsId, showsId);
+
+		if (se == null)
 			throw new NotFoundException("TEMPORADA Y/O SERIE NO ENCONTRADA.");
-		 return modelMapper.map(se, SeasonRest.class);
+		return modelMapper.map(se, SeasonRest.class);
 	}
 }

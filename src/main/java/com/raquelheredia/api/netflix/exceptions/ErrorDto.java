@@ -11,13 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ErrorDto implements Serializable{
-	
+public class ErrorDto implements Serializable {
+
 	private static final long serialVersionUID = -2469847120519097833L;
 
 	private String name;
 
 	private String value;
-	
-}
 
+}

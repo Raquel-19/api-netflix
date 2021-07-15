@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.springframework.http.HttpStatus;
 
 public class NotFoundException extends NetflixExceptions {
-	
+
 	private static final long serialVersionUID = -6378472149201593916L;
 
 	public NotFoundException(final String message) {
