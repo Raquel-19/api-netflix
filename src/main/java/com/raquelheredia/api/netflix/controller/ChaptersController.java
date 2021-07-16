@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,18 +42,18 @@ public class ChaptersController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<List<ChaptersRest>> findChaptersOfSpecificSeasonAndShow(@PathVariable Long seasonsId,
-			@PathVariable Long showsId) throws NetflixExceptions {
+	public NetflixResponse<List<ChaptersRest>> findChaptersOfSpecificSeasonAndShow(@PathVariable Long seasonId,
+			@PathVariable Long showId) throws NetflixExceptions {
 
 		return new NetflixResponse<List<ChaptersRest>>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, chaptersService.findChaptersOfSpecificSeasonAndShow(seasonsId, showsId));
+				CommonConstants.OK, chaptersService.findChaptersOfSpecificSeasonAndShow(seasonId, showId));
 		// return chaptersService.findChaptersOfSpecificSeasonAndShow(seasonsId,
 		// showsId);
 	}
 	//TODO: MODIFICAR PATCHMAPPING -> Cuando se actualiza un campo en el actualizar (Ver PensandoApimente)
 	
-	@PutMapping (UrlConstants.URL_CHAPTER_ID + UrlConstants.URL_CHAPTER + UrlConstants.URL_NAME) 
-	//@PutMapping("/{chaptersId}/chapters/{newName}")
+	@PatchMapping (UrlConstants.URL_CHAPTER_ID + UrlConstants.URL_CHAPTER + UrlConstants.URL_NAME) 
+	//@PatchMapping("/{chaptersId}/chapters/{newName}")
 	@ApiOperation(value = "Actualiza el nombre de un captitulo", response = TVShowsController.class)
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
 			@ApiResponse(code = 200, message = "Successfully!"),
@@ -60,10 +61,10 @@ public class ChaptersController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<ChaptersRest> updateChapter(@PathVariable Long chaptersId, @PathVariable String newName)
+	public NetflixResponse<ChaptersRest> updateChapter(@PathVariable Long chapterId, @PathVariable String newName)
 			throws NetflixExceptions {
 		return new NetflixResponse<ChaptersRest>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, chaptersService.updateChapter(chaptersId, newName));
+				CommonConstants.OK, chaptersService.updateChapter(chapterId, newName));
 	}
 	@GetMapping (UrlConstants.URL_SHOW + UrlConstants.URL_SHOW_ID + UrlConstants.URL_SEASON + UrlConstants.URL_SEASON_ID + UrlConstants.URL_CHAPTER + UrlConstants.URL_CHAPTER_ID)
 	//@GetMapping("/shows/{showsId}/seasons/{seasonsId}/chapters/{chaptersId}")
@@ -74,11 +75,11 @@ public class ChaptersController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<ChaptersRest> findSeasonOfSeasonAndShowNumber(@RequestParam Long chaptersId, Long seasonsId,
-			Long showsId) throws NetflixExceptions {
+	public NetflixResponse<ChaptersRest> findSeasonOfSeasonAndShowNumber(@RequestParam Long chapterId, Long seasonId,
+			Long showId) throws NetflixExceptions {
 
 		return new NetflixResponse<ChaptersRest>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, chaptersService.findSeasonOfSeasonAndShowNumber(chaptersId, seasonsId, showsId));
+				CommonConstants.OK, chaptersService.findSeasonOfSeasonAndShowNumber(chapterId, seasonId, showId));
 		// return chaptersService.findSeasonOfSeasonAndShowNumber (id, seasonsId,
 		// showsId);
 	}

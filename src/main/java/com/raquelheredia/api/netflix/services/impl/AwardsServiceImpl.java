@@ -33,7 +33,7 @@ public class AwardsServiceImpl implements AwardsService {
 		List<Awards> aw = repositoryAwards.findAll();
 
 		if (aw.size() == 0)
-			throw new NotFoundException("PREMIOS NO ENCONTRADOS.");
+			throw new NotFoundException("PREMIOS NO ENCONTRADOS");
 
 		return aw.stream().map(award -> modelMapper.map(award, AwardsRest.class)).collect(Collectors.toList());
 	}

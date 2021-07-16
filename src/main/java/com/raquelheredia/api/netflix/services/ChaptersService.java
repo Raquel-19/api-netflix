@@ -7,10 +7,10 @@ import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 
 public interface ChaptersService {
 
-	List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long seasonsId, Long showsId) throws NetflixExceptions;
+	List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long seasonId, Long showId) throws NetflixExceptions;
 
-	ChaptersRest findSeasonOfSeasonAndShowNumber(Long chaptersId, Long seasonsId, Long showsId) throws NetflixExceptions;
+	ChaptersRest findSeasonOfSeasonAndShowNumber(Long chapterId, Long seasonId, Long showId) throws NetflixExceptions;
 
-	ChaptersRest updateChapter(Long chaptersId, String newName) throws NetflixExceptions;
+	ChaptersRest updateChapter(Long chapterId, String newName) throws NetflixExceptions;
 
 }

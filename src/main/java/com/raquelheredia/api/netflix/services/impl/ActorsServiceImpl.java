@@ -58,7 +58,7 @@ public class ActorsServiceImpl implements ActorsService {
 	public ActorsRest findById(Long actorId) throws NetflixExceptions {
 
 		Actors ac = repositoryActors.findById(actorId)
-				.orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID."));
+				.orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID"));
 //		
 //		if (ac == null) 
 //			throw new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID.");
@@ -92,9 +92,9 @@ public class ActorsServiceImpl implements ActorsService {
 	}
 
 	@Override
-	public ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(Long actorsId) throws NetflixExceptions {
-		Actors ac = repositoryActors.findById(actorsId)
-				.orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID."));
+	public ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(Long actorId) throws NetflixExceptions {
+		Actors ac = repositoryActors.findById(actorId)
+				.orElseThrow(() -> new NotFoundException("ACTOR NO ENCONTRADO. POR FAVOR, ESCRIBA OTRO ID"));
 
 		return modelMapper.map(ac, ActorsRestWithTVShows.class);
 	}

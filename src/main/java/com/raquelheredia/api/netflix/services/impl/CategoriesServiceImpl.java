@@ -29,7 +29,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 		List<Categories> ca = repositoryCategories.findAll();
 
 		if (ca.size() == 0)
-			throw new NotFoundException("CATEGORIAS NO ENCONTRADAS.");
+			throw new NotFoundException("CATEGORIAS NO ENCONTRADAS");
 
 		return ca.stream().map(category -> modelMapper.map(category, CategoriesRest.class))
 				.collect(Collectors.toList());

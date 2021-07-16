@@ -84,7 +84,7 @@ public class CategoriesControllerTest {
 				.andReturn();
 
 	}
-	
+
 	@Test
 	public void retrieveCategoriesId() throws Exception {
 
@@ -95,15 +95,9 @@ public class CategoriesControllerTest {
 		RequestBuilder request = MockMvcRequestBuilders.get("/api/netflix/v1/categories" + "/1");
 
 		mockMvc.perform(request).andExpect(status().isOk())
-				.andExpect(content().json("{\r\n"
-						+ "  \"status\": \"Success\",\r\n"
-						+ "  \"code\": \"200 OK\",\r\n"
-						+ "  \"message\": \"OK\",\r\n"
-						+ "  \"data\": {\r\n"
-						+ "    \"name\": \"CIENCIA FICCIÓN\",\r\n"
-						+ "    \"ID\": 1\r\n"
-						+ "  }\r\n"
-						+ "}"))
+				.andExpect(content().json("{\r\n" + "  \"status\": \"Success\",\r\n" + "  \"code\": \"200 OK\",\r\n"
+						+ "  \"message\": \"OK\",\r\n" + "  \"data\": {\r\n" + "    \"name\": \"CIENCIA FICCIÓN\",\r\n"
+						+ "    \"ID\": 1\r\n" + "  }\r\n" + "}"))
 				.andReturn();
 	}
 }

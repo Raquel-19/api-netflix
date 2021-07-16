@@ -56,10 +56,10 @@ public class TVShowsController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<TVShowsRest> findById(@PathVariable Long showsId) throws NetflixExceptions {
+	public NetflixResponse<TVShowsRest> findById(@PathVariable Long showId) throws NetflixExceptions {
 
 		return new NetflixResponse<TVShowsRest>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, showsService.findById(showsId));
+				CommonConstants.OK, showsService.findById(showId));
 		// return ResponseEntity.ok().body(showsService.findById(id));
 	}
 	@PutMapping (UrlConstants.URL_SHOW_ID + UrlConstants.URL_SHOW + UrlConstants.URL_NAME) 	//@PutMapping("/{showsId}/shows/{newName}")
@@ -70,10 +70,10 @@ public class TVShowsController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<TVShowsRest> updateShow(@PathVariable Long showsId, @PathVariable String newName)
+	public NetflixResponse<TVShowsRest> updateShow(@PathVariable Long showId, @PathVariable String newName)
 			throws NetflixExceptions {
 		return new NetflixResponse<TVShowsRest>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, showsService.updateShow(showsId, newName));
+				CommonConstants.OK, showsService.updateShow(showId, newName));
 
 		/*
 		 * if (shows.getId() == null) { return new
@@ -89,10 +89,10 @@ public class TVShowsController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<TVShowsRest> addCategories(@PathVariable Long categoryId, @PathVariable Long showsId)
+	public NetflixResponse<TVShowsRest> addCategories(@PathVariable Long categoryId, @PathVariable Long showId)
 			throws NetflixExceptions {
 		return new NetflixResponse<TVShowsRest>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, showsService.addCategories(categoryId, showsId));
+				CommonConstants.OK, showsService.addCategories(categoryId, showId));
 	}
 
 	@DeleteMapping(UrlConstants.URL_SHOW_ID)
@@ -103,8 +103,8 @@ public class TVShowsController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<TVShowsRest> deleteShow(@PathVariable Long showsId) throws NetflixExceptions {
-		showsService.deleteShow(showsId);
+	public NetflixResponse<TVShowsRest> deleteShow(@PathVariable Long showId) throws NetflixExceptions {
+		showsService.deleteShow(showId);
 		return new NetflixResponse<>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.NO_CONTENT),
 				CommonConstants.OK);
 	}

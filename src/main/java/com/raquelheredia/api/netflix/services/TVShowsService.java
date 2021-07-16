@@ -7,14 +7,14 @@ import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 
 public interface TVShowsService {
 
-	TVShowsRest findById(Long showsId) throws NetflixExceptions;
+	TVShowsRest findById(Long showId) throws NetflixExceptions;
 
-	TVShowsRest updateShow(Long showsId, String newName) throws NetflixExceptions;
+	TVShowsRest updateShow(Long showId, String newName) throws NetflixExceptions;
 
 	List<TVShowsRest> findByCategoryId(Long categoryId) throws NetflixExceptions;
 
-	TVShowsRest addCategories(Long categoryId, Long showsId) throws NetflixExceptions;
+	TVShowsRest addCategories(Long categoryId, Long showId) throws NetflixExceptions;
 
-	public void deleteShow(Long showsId) throws NetflixExceptions;
+	public void deleteShow(Long showId) throws NetflixExceptions;
 
 }

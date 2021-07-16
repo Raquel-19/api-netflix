@@ -38,10 +38,10 @@ public class SeasonController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<List<SeasonRest>> findSeasonByShow(@PathVariable Long showsId) throws NetflixExceptions {
+	public NetflixResponse<List<SeasonRest>> findSeasonByShow(@PathVariable Long showId) throws NetflixExceptions {
 
 		return new NetflixResponse<List<SeasonRest>>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, seasonService.findSeasonByShow(showsId));
+				CommonConstants.OK, seasonService.findSeasonByShow(showId));
 		// return seasonService.findSeasonByShow(showsId);
 	}
 	@GetMapping (UrlConstants.URL_SHOW + UrlConstants.URL_SHOW_ID + UrlConstants.URL_SEASON + UrlConstants.URL_SEASON_ID) //@GetMapping("/shows/{showsId}/seasons/{seasonsId}")
@@ -52,11 +52,11 @@ public class SeasonController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	public NetflixResponse<SeasonRest> findSeasonOfASpecificShow(@PathVariable Long seasonsId,
-			@PathVariable Long showsId) throws NetflixExceptions {
+	public NetflixResponse<SeasonRest> findSeasonOfASpecificShow(@PathVariable Long seasonId,
+			@PathVariable Long showId) throws NetflixExceptions {
 
 		return new NetflixResponse<SeasonRest>(CommonConstants.SUCCESS, String.valueOf(HttpStatus.OK),
-				CommonConstants.OK, seasonService.findSeasonOfASpecificShow(seasonsId, showsId));
+				CommonConstants.OK, seasonService.findSeasonOfASpecificShow(seasonId, showId));
 		// return seasonService.findSeasonOfASpecificShow (seasonsId, showsId);
 	}
 

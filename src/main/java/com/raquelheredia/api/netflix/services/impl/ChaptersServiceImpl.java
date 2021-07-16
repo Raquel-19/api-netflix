@@ -24,30 +24,30 @@ public class ChaptersServiceImpl implements ChaptersService {
 	private final ModelMapper modelMapper;
 
 	@Override
-	public List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long seasonsId, Long showsId)
+	public List<ChaptersRest> findChaptersOfSpecificSeasonAndShow(Long seasonId, Long showId)
 			throws NetflixExceptions {
-		List<Chapters> chap = repositoryChapters.findBySeasonsIdAndSeasonsTvShowsId(seasonsId, showsId);
+		List<Chapters> chap = repositoryChapters.findBySeasonsIdAndSeasonsTvShowsId(seasonId, showId);
 
 		if (chap.size() == 0)
-			throw new NotFoundException("CAPITULOS Y/O TEMPORADAS NO ENCONTRADAS.");
+			throw new NotFoundException("CAPITULOS Y/O TEMPORADAS NO ENCONTRADAS");
 
 		return chap.stream().map(chapter -> modelMapper.map(chapter, ChaptersRest.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public ChaptersRest findSeasonOfSeasonAndShowNumber(Long chaptersId, Long seasonsId, Long showsId)
+	public ChaptersRest findSeasonOfSeasonAndShowNumber(Long chapterId, Long seasonId, Long showId)
 			throws NetflixExceptions {
-		Chapters ch = repositoryChapters.findByIdAndSeasonsIdAndSeasonsTvShowsId(chaptersId, seasonsId, showsId);
+		Chapters ch = repositoryChapters.findByIdAndSeasonsIdAndSeasonsTvShowsId(chapterId, seasonId, showId);
 
 		if (ch == null)
-			throw new NotFoundException("CAPITULO, TEMPORADA Y/O SERIE NO ENCONTRADAS.");
+			throw new NotFoundException("CAPITULO, TEMPORADA Y/O SERIE NO ENCONTRADAS");
 
 		return modelMapper.map(ch, ChaptersRest.class);
 	}
 
 	@Override
-	public ChaptersRest updateChapter(Long chaptersId, String newName) throws NetflixExceptions {
-		Chapters ch = repositoryChapters.findById(chaptersId)
+	public ChaptersRest updateChapter(Long chapterId, String newName) throws NetflixExceptions {
+		Chapters ch = repositoryChapters.findById(chapterId)
 				.orElseThrow(() -> new NotFoundException("EL NOMBRE NO SE PUDO ACTUALIZAR"));
 		;
 

@@ -130,7 +130,7 @@ public class ActorsController {
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden")
 
 	})
-	ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(@PathVariable Long actorsId) throws NetflixExceptions {
-		return actorsService.findShowsAndChaptersOfSpecificActor(actorsId);
+	ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(@PathVariable Long actorId) throws NetflixExceptions {
+		return actorsService.findShowsAndChaptersOfSpecificActor(actorId);
 	}
 }

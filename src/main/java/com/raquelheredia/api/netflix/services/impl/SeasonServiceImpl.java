@@ -24,22 +24,22 @@ public class SeasonServiceImpl implements SeasonService {
 	private final ModelMapper modelMapper;
 
 	@Override
-	public List<SeasonRest> findSeasonByShow(Long showsId) throws NetflixExceptions {
+	public List<SeasonRest> findSeasonByShow(Long showId) throws NetflixExceptions {
 
-		List<Seasons> se = repositorySeasons.findByTvShowsId(showsId);
+		List<Seasons> se = repositorySeasons.findByTvShowsId(showId);
 
 		if (se.size() == 0)
-			throw new NotFoundException("TEMPORADAS NO ENCONTRADAS.");
+			throw new NotFoundException("TEMPORADAS NO ENCONTRADAS");
 
 		return se.stream().map(season -> modelMapper.map(season, SeasonRest.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public SeasonRest findSeasonOfASpecificShow(Long seasonsId, Long showsId) throws NetflixExceptions {
-		Seasons se = repositorySeasons.findByIdAndTvShowsId(seasonsId, showsId);
+	public SeasonRest findSeasonOfASpecificShow(Long seasonId, Long showId) throws NetflixExceptions {
+		Seasons se = repositorySeasons.findByIdAndTvShowsId(seasonId, showId);
 
 		if (se == null)
-			throw new NotFoundException("TEMPORADA Y/O SERIE NO ENCONTRADA.");
+			throw new NotFoundException("TEMPORADA Y/O SERIE NO ENCONTRADA");
 		return modelMapper.map(se, SeasonRest.class);
 	}
 }

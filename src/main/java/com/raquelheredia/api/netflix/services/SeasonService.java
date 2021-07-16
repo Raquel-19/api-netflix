@@ -7,8 +7,8 @@ import com.raquelheredia.api.netflix.exceptions.NetflixExceptions;
 
 public interface SeasonService {
 
-	List<SeasonRest> findSeasonByShow(Long showsId) throws NetflixExceptions;
+	List<SeasonRest> findSeasonByShow(Long showId) throws NetflixExceptions;
 
-	SeasonRest findSeasonOfASpecificShow(Long seasonsId, Long showsId) throws NetflixExceptions;
+	SeasonRest findSeasonOfASpecificShow(Long seasonId, Long showId) throws NetflixExceptions;
 
 }

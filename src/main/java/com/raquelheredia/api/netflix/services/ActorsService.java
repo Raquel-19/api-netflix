@@ -19,6 +19,6 @@ public interface ActorsService {
 
 	void deleteActor(Long actorId) throws NetflixExceptions;
 
-	ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(Long actorsId) throws NetflixExceptions;
+	ActorsRestWithTVShows findShowsAndChaptersOfSpecificActor(Long actorId) throws NetflixExceptions;
 
 }
